@@ -18,9 +18,9 @@ use App\Http\Controllers\AuthController;
 //     return view('welcome');
 // });
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('home');
-});
+})->middleware('auth');
 
 Route::get('/about', function () {
     return view('about');
@@ -31,7 +31,11 @@ Route::get('/blog', function () {
 });
 
 Route::get('login', [AuthController::class, 'login']
-);
+)->name('login');
+
+Route::post('login', [AuthController::class, 'authenticating']
+)->name('login');
 
 Route::get('register', [AuthController::class, 'register']
 );
+

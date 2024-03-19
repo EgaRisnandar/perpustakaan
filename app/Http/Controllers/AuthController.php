@@ -16,4 +16,13 @@ class AuthController extends Controller
     {
         return view('register');
     }
+
+    public function authenticating(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => ['required',],
+            'password' => ['required'],
+        ]); 
+        
+    }
 }
