@@ -17,6 +17,11 @@
     .login-box {
         width: 500px;
         border: solid 1px;
+        padding: 30px;
+    }
+
+    form div {
+        margin-bottom: 15px;
     }
 </style>
 
@@ -27,12 +32,15 @@
             <form action=""method="post">
                 @csrf
                 <div>
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control">
                 </div>
                 <div>
-                    <label for="password">Password</label>
-                    <input type="text" name="password" id="password">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="text" name="password" id="password" class="form-control">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary form-control">Login</button>
                 </div>
             </form>
         </div>
