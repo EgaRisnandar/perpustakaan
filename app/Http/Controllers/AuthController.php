@@ -25,4 +25,15 @@ class AuthController extends Controller
         ]); 
         
     }
+
+    public function registerProcess(Request $request)
+    {
+        $validated = $request->validate([
+            'username' => ['required', 'min:3'],
+            'password' => ['required', 'min:8'],
+            'email' => ['required', 'email:dns', 'unique:users'],
+            'nama_lengkap' => ['required'],
+            'alamat' => ['required'],
+        ]);
+    }
 }

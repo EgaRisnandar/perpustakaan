@@ -43,7 +43,7 @@
                     <button type="submit" class="btn btn-primary form-control">Login</button>
                 </div>
                 <div class="text-center">
-                    <a href="Register">Sign Up</a>
+                    Belum Punya Akun? <a href="/register">Sign Up</a>
                 </div>
             </form>
         </div>

@@ -39,3 +39,6 @@ Route::post('login', [AuthController::class, 'authenticating']
 Route::get('register', [AuthController::class, 'register']
 );
 
+Route::post('register', [AuthController::class, 'registerProcess']
+);
+
