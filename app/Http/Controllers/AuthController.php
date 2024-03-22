@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Auth\Events\Login;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Login;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -35,5 +38,7 @@ class AuthController extends Controller
             'nama_lengkap' => ['required'],
             'alamat' => ['required'],
         ]);
+        //$user = User::create($request->all());
+        return redirect('/login')->with('success', 'Registrasi Berhasil Silahkan Login');
     }
 }

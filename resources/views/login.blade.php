@@ -11,25 +11,38 @@
 <style>
     .main {
         height: 100vh;
-        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Menambahkan ini agar elemen di dalam .main ditata secara vertikal */
     }
 
     .login-box {
-        width: 500px;
-        border: solid 1px;
+        width: 300px;
+        border: 1px solid;
         padding: 30px;
+        margin-bottom: 20px; /* Menambahkan margin bawah untuk memberi ruang untuk pop-up */
     }
 
-    form div {
-        margin-bottom: 15px;
+    .alert-success {
+        position: absolute; /* Mengubah posisi menjadi absolut */
+        top: 10px; /* Mengatur jarak dari atas */
+        width: 100%; /* Mengatur lebar pop-up agar sesuai dengan .main */
     }
 </style>
 
 <body>
 
-    <div class="main d-flex justify-content-center align-items-center">
+    <div class="main">
+        @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
         <div class="login-box">
-            <form action=""method="post">
+            <form action="" method="post">
                 @csrf
                 <div>
                     <label for="username" class="form-label">Username</label>
@@ -45,10 +58,9 @@
                 <div class="text-center">
                     Belum Punya Akun? <a href="/register">Sign Up</a>
                 </div>
-            </form>
+            </form> 
         </div>
-     </div>
-
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
-</html>
+</body> 
+</html> 
