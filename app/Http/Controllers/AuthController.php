@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Login;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -23,10 +21,16 @@ class AuthController extends Controller
     public function authenticating(Request $request)
     {
         $credentials = $request->validate([
-            'username' => ['required',],
+            'username' => ['required'],
             'password' => ['required'],
-        ]); 
-        
+        ]);
+
+        if (auth()->attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->intended('/home');
+        } else {
+            return back()->withErrors(['username' => 'Username or password is incorrect']);
+        }
     }
 
     public function registerProcess(Request $request)
@@ -38,7 +42,16 @@ class AuthController extends Controller
             'nama_lengkap' => ['required'],
             'alamat' => ['required'],
         ]);
-        //$user = User::create($request->all());
+
+        // Simpan data user ke database
+        $user = new User();
+        $user->username = $request->username;
+        $user->password = Hash::make($request->password);
+        $user->email = $request->email;
+        $user->nama_lengkap = $request->nama_lengkap;
+        $user->alamat = $request->alamat;
+        $user->save();
+
         return redirect('/login')->with('success', 'Registrasi Berhasil Silahkan Login');
     }
 }
