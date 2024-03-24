@@ -18,9 +18,13 @@ use App\Http\Controllers\AuthController;
 //     return view('welcome');
 // });
 
+Route::get('/', function () {
+    return view('home');
+});
+
 Route::get('/home', function () {
     return view('home');
-})->middleware('auth');
+});
 
 Route::get('/about', function () {
     return view('about');
@@ -40,5 +44,8 @@ Route::get('register', [AuthController::class, 'register']
 );
 
 Route::post('register', [AuthController::class, 'registerProcess']
+);
+
+Route::post('/logout', [AuthController::class, 'logout']
 );
 
